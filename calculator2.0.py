@@ -1,6 +1,6 @@
 import sys
 
-#--------?????????--------
+#--------工资函数：计算税后--------
 def calculator(salary):
         tax = salary - salary * (0.08 + 0.02 + 0.005 + 0.06) - 3500
         if tax <= 1500:
@@ -30,17 +30,17 @@ def calculator(salary):
         pay = format(pay,".2f")
         return pay
 
-#--------??key?value??????????----------
+#--------抽取key和value并添加到工资的字典内----------
 def keyvalue(lsit):
         global salarydict
         salarydict = {}
         
 
-        for string in list: #????????????????
+        for string in list: #开始进行列表每一个列表子集的转化
                         string = str(string)
                         n = 0
-                        charlist = [] #???????????string???????
-                        for char in string: #??pkey?psalary???
+                        charlist = [] #定义一个空的列表将每个string单独转化为列表
+                        for char in string: #进行pkey，psalary的提取
                                 n += 1                                
                                 charlist.append(char)
                                 if char == ":":
