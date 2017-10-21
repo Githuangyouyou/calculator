@@ -2,8 +2,12 @@ import sys
 
 #--------工资函数：计算税后--------
 def calculator(salary):
+
         tax = salary - salary * (0.08 + 0.02 + 0.005 + 0.06) - 3500
-        if tax <= 1500:
+        if tax <= 0:
+                rate = 0
+                decute = 0
+        elif tax <= 1500:
                 rate = 0.03
                 decute = 0
         elif tax > 1500 and tax <= 4500:
@@ -19,7 +23,7 @@ def calculator(salary):
                 rate = 0.3
                 decute = 2755
         elif tax > 55000 and tax <= 80000:
-                rate = 0.35
+                rate = 0.35000
                 decute = 5505
         elif tax > 80000:
                 rate = 0.45
@@ -31,10 +35,9 @@ def calculator(salary):
         return pay
 
 #--------抽取key和value并添加到工资的字典内----------
-def keyvalue(lsit):
+def keyvalue(list):
         global salarydict
         salarydict = {}
-        
 
         for string in list: #开始进行列表每一个列表子集的转化
                         string = str(string)
