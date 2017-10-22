@@ -1,6 +1,4 @@
-import sys
-
-#----------------???????????----------------
+s
 class Employee(object):
 	def __init__(self,usr_filename):
 		with open(usr_filename, 'r') as usr_file:
@@ -11,7 +9,7 @@ class Employee(object):
 			usr_dictvalue = u_listtwo[1].strip().strip('\n')
 			usr_dict[usr_dictkey] = usr_dictvalue
 
-#----------------???????????----------------
+#----------------员工对象的工资计算方法----------------
 	def calculator(self,gongzi_filename):
 		for ID,salary in usr_dict.items():
 			salary = int(salary)
@@ -62,16 +60,16 @@ class Employee(object):
 			with open(gongzi_filename,'a') as gongzi_file:
 				gongzi_file.write('{},{},{},{},{}\n'.format(self.id,self.salary,self.shebao,self.taxrate,self.pay))
 
-#----------------??????----------------
+#----------------参数配置函数----------------
 class Config(object):
 	def __init__(self,cfg_filename):		
 		with open(cfg_filename, 'r') as cfg_file:
 			cfg_list = cfg_file.readlines()
 		for str in cfg_list:			
 			c_listtwo = str.split('=')	
-			cfg_dictkey = c_listtwo[0].strip() #strip()???????????(?????)????????
+			cfg_dictkey = c_listtwo[0].strip() #strip()只能去除左右两边的字符(中间的不行)，默认为去除空格
 			cfg_dictvalue = c_listtwo[1].strip().strip('\n')
-			cfg_dict[cfg_dictkey] = cfg_dictvalue #??????????
+			cfg_dict[cfg_dictkey] = cfg_dictvalue #已完成参数字典的录入
 
 		self.JiShuL = float(cfg_dict['JiShuL'])
 		self.JiShuH = float(cfg_dict['JiShuH'])
@@ -80,30 +78,31 @@ class Config(object):
 		self.ShiYe = float(cfg_dict['ShiYe'])
 		self.GongShang = float(cfg_dict['GongShang'])
 		self.ShengYu = float(cfg_dict['ShengYu'])
-		self.GongJiJin = float(cfg_dict['GongJiJin']) #?????????
+		self.GongJiJin = float(cfg_dict['GongJiJin']) #完成对象的参数设定
 
-#----------------???----------------	
+#----------------主程序----------------	
 try:
 	if __name__ == '__main__':
 		cfg_dict = {}
 		usr_dict = {}
 
-#----------------???????????----------------
+#----------------进行配置对象的参数录入----------------
 		cfg_index = sys.argv.index('-c')
 		cfg_filename = './' + sys.argv[cfg_index + 1]
 		config = Config(cfg_filename) 
 
-#----------------??????????ID????----------------
+
+#----------------进行员工对象的工资和ID信息导入----------------
 
 		usr_index = sys.argv.index('-d')
 		usr_filename = './' + sys.argv[usr_index + 1]
 		usr = Employee(usr_filename)
 		
-#----------------?????????----------------
+#----------------进行员工工资表输出----------------
 		gongzi_index = sys.argv.index('-o')
 		gongzi_filename = './' + sys.argv[gongzi_index + 1]
 		usr.calculator(gongzi_filename)
 
-#----------------????----------------	
+#----------------出现错误----------------	
 except:
 	print('ParameterError')
