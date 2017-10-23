@@ -1,4 +1,5 @@
-s
+import sys
+
 class Employee(object):
 	def __init__(self,usr_filename):
 		with open(usr_filename, 'r') as usr_file:
